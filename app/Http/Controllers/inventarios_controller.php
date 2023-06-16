@@ -30,7 +30,7 @@ class inventarios_controller extends Controller
     
         $update_inventario -> id_bodega = $req -> id_bodega;
         $update_inventario -> id_producto = $req -> id_producto;
-        $update_inventario -> cantidad = $req -> cantidad;
+        $update_inventario -> cantidad += $req -> cantidad;
 
         $update_inventario -> save();
 

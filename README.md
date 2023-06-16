@@ -1,22 +1,15 @@
 # prueba fake para prepararse ha trabajar con laravel
 
-## Puntos ha hacer
+## consiste en 6 endpoints este api, con 5 migraciones, bodegas, historiales, inventarios, productos, users. para usar esta api debes realizar las migraciones y conectar tus credenciales de mysql, y llenar con tados las tablas(opcional)
 
-###    1. Crear un proyecto en PHP V.8 y conecta la base de datos PDO --> hecho ✔️
+### EndPoint 1: Metodo Get("/api/bodegas"). Permita listar todas las bodegas ordenadas alfabéticamente.
 
-###    2. Crear las migraciones para las 5 tablas que se van a usar en el proyecto. (se anexa el modelo relacional de la base de datos), bodegas, historiales, inventarios, productos, users --> hecho ✔️
+### EndPoint 2: Metodo Post("/api/bodega"). permite crear una bodega. Datos obligatorias ha enviar -->   { "nombre": string, "id_responsable": number }
 
+### EndPoint 3: Metodo Get("/api/productos-order-total"). permita listar todos los productos en orden descendente por el campo "Total". El campo "Total" es la cantidad de unidades que la empresa tiene de este producto, considerando la unión de todas las bodegas.
 
-###    3. Realizar un EndPolnt que permita listar todas las bodegas ordenadas alfabéticamente. endpoint bodegas --> hecho ✔️
+### EndPoint 4: Metodo Post("/api/producto"). insertar un producto y a su vez asigne una cantidad inicial del mismo en la tabla inventarios en una de las bodegas por default. datos obligatorios --> { "id_bodega": number, "cantidad": number, "nombre": string, "descripcion": string }.
 
+### EndPoint 5: Metodo Post("/api/inventario"). permita insertar registros en la tabla de inventarios. La tabla no puede repetir la combinación de Bodega I Producto, Si es una combinación totalmente nueva, se hace un lnsert, Si es una combinación existente, entonces se debe hacer un Update a este registro. Datos obligatorios ---> { "id_producto": number, "id_bodega": number, "cantidad": number }.
 
-###    4. Realizar un EndPolnt que permita crear una bodegas.(agregar en los comentarios de la función los datos de entrada). endpoint bodega metodo posts --> hecho ✔️ 
-
-
-###    5. Realizar un EndPoint que permita listar todos los productos en orden descendente por el campo "Total". El campo "Total" es la cantidad de unidades que la empresa tiene de este producto, considerando la unión de todas las bodegas, es decir que el dato como tal no existe en la base de datos,sino se debe calcular. Si la Bodega A tiene 1O unidades, la Bodega B tiene 5 unidades y la Bodega C tiene 3 unidades. Total= 18. --> hecho ✔️ 
-
-
-###    6. Realizar un EndPoint que permita insertar un productos y a su vez asigne una cantidad inicial del mismo en la tabla inventarios en una de las bodegas por default.  --> hecho ✔️ 
-
-
-###     7. Realizar un EndPoint que permita insertar registros en la tabla de inventarios, los parámetros de entrada deben ser (id_producto,id_bodega,cantidad). ◦ La tabla no puede repetir la combinación de Bodega I Producto Por lo tanto será necesario validar si el ingreso que se está realizado ya existe o es una combinación totalmente nueva. ◦ Si es una combinación totalmente nueva, se debe hacer un lnsert, considerando los datos ingresados. ◦ Si es una combinación existente, entonces se debe hacer un Update a este registro, considerando la suma de la cantidad existente con la cantidad nueva.
+### EndPoint 6: Metodo Post("/api/trasladar"). permite Trasladar un producto de una bodega a otra, datos obligatorios ---> { "id_producto": number, "id_bodega_origen": number, "id_bodega_destino": number, "cantidad": number }.
