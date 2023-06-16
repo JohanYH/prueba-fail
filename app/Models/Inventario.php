@@ -9,7 +9,6 @@ class Inventario extends Model
 {
     use HasFactory;
 
-    public function exist(){
+    protected $fillable = ["cantidad", "id_producto", "id_bodega", "created_by", "update_by"];
 
-    }
 }

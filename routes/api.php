@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\bodegas_controller;
+use App\Http\Controllers\historiales_controller;
 use App\Http\Controllers\inventarios_controller;
 use App\Http\Controllers\productos_controller;
 use Illuminate\Support\Facades\Route;
@@ -14,3 +15,5 @@ Route::get("/productos-order-total", [productos_controller::class, "order_desc_t
 Route::post("/productos", [productos_controller::class, "insert_product"]);
 
 Route::post("/inventario", [inventarios_controller::class, "insert_inventario"]);
+
+Route::post("/trasladar", [historiales_controller::class, "translado"]);
